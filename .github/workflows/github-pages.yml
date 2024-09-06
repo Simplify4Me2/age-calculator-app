@@ -38,8 +38,7 @@ jobs:
 
       - name: Debug
         run: 
-            cd age-calculator-app/age-calculator-app
-            ls -al
+            ls -al age-calculator-app/age-calculator-app
 
       - name: Publish .NET Core Project
         run: dotnet publish age-calculator-app/age-calculator-app.csproj -c Release -o release --nologo
