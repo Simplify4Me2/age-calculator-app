@@ -41,19 +41,32 @@ jobs:
       
 # https://github.com/SteveSandersonMS/BlazorOnGitHubPages
 
-      - name: Debug
+      - name: Debug working directory
+        run: 
+            ls -al
+
+      - name: Debug release
         run: 
             ls -al release/wwwroot
 
       # - name: copy index.html to 404.html
-      #   run: cp release/wwwroot/index.html release/wwwroot/404.html
+      #   run: cp 404.html release/wwwroot/404.html
 
-      - name: Add .nojekyll file
-        run: touch release/wwwroot/.nojekyll
+      # - name: Add .nojekyll file
+      #   run: touch release/wwwroot/.nojekyll
     
-      - name: Commit wwwroot to Github Pages
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+      # - name: Commit wwwroot to Github Pages
+      #   uses: JamesIves/github-pages-deploy-action@3.7.1
+      #   with:
+      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #       BRANCH: gh-pages
+      #       FOLDER: release/wwwroot
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            BRANCH: gh-pages
-            FOLDER: release/wwwroot
+          # Upload wwwroot folder
+          path: './release/wwwroot'
