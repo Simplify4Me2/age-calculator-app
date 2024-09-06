@@ -38,10 +38,10 @@ jobs:
 
       - name: Debug
         run: 
-            ls -al age-calculator-app/age-calculator-app/age-calculator-app
+            ls -al AgeCalculatorApp/AgeCalculatorApp
 
       - name: Publish .NET Core Project
-        run: dotnet publish age-calculator-app/age-calculator-app/age-calculator-app.csproj -c Release -o release --nologo
+        run: dotnet publish AgeCalculatorApp/AgeCalculatorApp/AgeCalculatorApp.csproj -c Release -o release --nologo
 
       - name: copy index.html to 404.html
         run: cp release/wwwroot/index.html release/wwwroot/404.html

@@ -1,5 +1,5 @@
-using age_calculator_app.Client.Pages;
-using age_calculator_app.Components;
+using AgeCalculatorApp.Client.Pages;
+using AgeCalculatorApp.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,6 +24,6 @@ app.UseAntiforgery();
 
 app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
-    .AddAdditionalAssemblies(typeof(age_calculator_app.Client._Imports).Assembly);
+    .AddAdditionalAssemblies(typeof(AgeCalculatorApp.Client._Imports).Assembly);
 
 app.Run();
