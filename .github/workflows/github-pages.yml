@@ -36,6 +36,9 @@ jobs:
             dotnet-version: 8.x
             include-prerelease: true
 
+      - name: Debug
+        run: ls -al 
+
       - name: Publish .NET Core Project
         run: dotnet publish src/age-calculator-app/age-calculator-app.csproj -c Release -o release --nologo
 
