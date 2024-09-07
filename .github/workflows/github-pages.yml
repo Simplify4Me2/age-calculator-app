@@ -55,22 +55,22 @@ jobs:
       # - name: Add .nojekyll file
       #   run: touch release/wwwroot/.nojekyll
     
-      # - name: Commit wwwroot to Github Pages
-      #   uses: JamesIves/github-pages-deploy-action@3.7.1
-      #   with:
-      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #       BRANCH: gh-pages
-      #       FOLDER: release/wwwroot
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Commit wwwroot to Github Pages
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
-          # Upload wwwroot folder
-          path: './release/wwwroot'
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            BRANCH: gh-pages
+            FOLDER: release/wwwroot
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      # - name: Setup Pages
+      #   uses: actions/configure-pages@v4
+
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     # Upload wwwroot folder
+      #     path: './release/wwwroot'
+
+      # - name: Deploy to GitHub Pages
+      #   id: deployment
+      #   uses: actions/deploy-pages@v4
