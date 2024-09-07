@@ -62,21 +62,21 @@ jobs:
       #       BRANCH: gh-pages
       #       FOLDER: release/wwwroot
 
-      - name: Commit wwwroot to Github Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_dir: release/wwwroot
-
-      # - name: Setup Pages
-      #   uses: actions/configure-pages@v4
-
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v3
+      # - name: Commit wwwroot to Github Pages
+      #   uses: peaceiris/actions-gh-pages@v3
       #   with:
-      #     # Upload wwwroot folder
-      #     path: './release/wwwroot'
+      #       github_token: ${{ secrets.GITHUB_TOKEN }}
+      #       publish_dir: release/wwwroot
 
-      # - name: Deploy to GitHub Pages
-      #   id: deployment
-      #   uses: actions/deploy-pages@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload wwwroot folder
+          path: './release/wwwroot'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
