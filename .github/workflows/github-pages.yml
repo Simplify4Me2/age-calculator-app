@@ -3,8 +3,8 @@ name: Deploy static content to Pages
 on:
   push:
     branches: ["main"]
-  # pull_request:
-  #   branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -38,16 +38,6 @@ jobs:
             
       - name: Publish .NET Core Project
         run: dotnet publish AgeCalculatorApp/AgeCalculatorApp.csproj -c Release -o release --nologo
-      
-# https://github.com/SteveSandersonMS/BlazorOnGitHubPages
-
-      - name: Debug working directory
-        run: 
-            ls -al
-
-      - name: Debug release
-        run: 
-            ls -al release/wwwroot
 
       # changes the base-tag in index.html from '/' to 'age-calculator-app' to match GitHub Pages repository subdirectory
       - name: Change base-tag in index.html from / to age-calculator-app
@@ -59,19 +49,6 @@ jobs:
       - name: Add .nojekyll file
         run: touch release/wwwroot/.nojekyll
     
-      # - name: Commit wwwroot to Github Pages
-      #   uses: JamesIves/github-pages-deploy-action@3.7.1
-      #   with:
-      #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #       BRANCH: gh-pages
-      #       FOLDER: release/wwwroot
-
-      # - name: Commit wwwroot to Github Pages
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #       github_token: ${{ secrets.GITHUB_TOKEN }}
-      #       publish_dir: release/wwwroot
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
