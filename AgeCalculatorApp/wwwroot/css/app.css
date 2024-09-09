@@ -1,5 +1,19 @@
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100%;
+}
+
+main {
+    background-color: hsl(0, 0%, 86%);
+    height: 100%;
+}
+
+#app {
+    height: 100%;
+}
+
+.page {
+    height: 100%;
 }
 
 h1:focus {
