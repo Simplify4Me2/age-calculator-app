@@ -12,13 +12,6 @@ html, body {
     height: 100%;
 }
 
-main {
-    background-color: hsl(0, 0%, 100%);
-    margin: auto;
-    min-width: 21.5rem;
-}
-
-
 h1:focus {
     outline: none;
 }
