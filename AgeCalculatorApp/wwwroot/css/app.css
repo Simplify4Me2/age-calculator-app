@@ -3,18 +3,21 @@ html, body {
     height: 100%;
 }
 
-main {
-    background-color: hsl(0, 0%, 86%);
-    height: 100%;
-}
-
 #app {
     height: 100%;
 }
 
 .page {
+    background-color: hsl(0, 0%, 94%);
     height: 100%;
 }
+
+main {
+    background-color: hsl(0, 0%, 100%);
+    margin: auto;
+    min-width: 21.5rem;
+}
+
 
 h1:focus {
     outline: none;
