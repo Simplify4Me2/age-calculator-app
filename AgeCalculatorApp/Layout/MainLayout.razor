@@ -1,17 +1,65 @@
-﻿@inherits LayoutComponentBase
+﻿@using System.ComponentModel.DataAnnotations
+@inherits LayoutComponentBase
 <div class="page">
     @* <div class="sidebar">
-        <NavMenu />
+    <NavMenu />
     </div> *@
 
     <main>
-       @*  <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        @*  <div class="top-row px-4">
+        <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
         </div> *@
-        <p>Day - Month - Year</p>
-        <p>years - months - days</p>
-        @* <article class="content px-4">
+        <EditForm Model="Model" class="foo" OnSubmit="Calculate" FormName="age-calculator-form">
+            <fieldset class="date-input">
+
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+            <p>
+                <label>Day</label>
+                <InputNumber class="w-auto" @bind-Value="Model!.Day" />
+            </p>
+            <p>
+                <label>Month</label>
+                <InputNumber @bind-Value="Model!.Month" />
+            </p>
+            <p>
+                <label>Year</label>
+                <InputNumber @bind-Value="Model!.Year" />
+            </p>
+            </fieldset>
+            <hr />
+            <button type="submit">Submit</button>
+        </EditForm>
+        <p>
+            <span><em>38</em>years</span>
+            <span><em>3</em>months</span>
+            <span><em>26</em>days</span>
+            @* <article class="content px-4">
             @Body
-        </article> *@
+            </article> *@
+        </p>
     </main>
 </div>
+
+@code {
+    [SupplyParameterFromForm]
+    private Input? Model { get; set; }
+
+    protected override void OnInitialized() => Model ??= new();
+
+    private void Calculate()
+    {
+        Console.WriteLine($"Calculating... Day: {Model?.Day}, Month: {Model?.Month}, Year: {Model?.Year}");
+    }
+
+    public class Input
+    {
+        [Required]
+        public int? Day { get; set; }
+        [Required]
+        [Range(1, 12, ErrorMessage ="Invalid Month")]
+        public int? Month { get; set; }
+        [Required]
+        public int? Year { get; set; }
+    }
+}
