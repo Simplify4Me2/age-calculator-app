@@ -13,6 +13,19 @@ main {
     border-radius: 1.5rem 1.5rem 6.2rem 1.5rem;
 }
 
+button {
+    background-color: hsl(259, 100%, 65%);
+}
+
+fieldset {
+    display: grid;
+}
+
+.calculated-age {
+    display: flex;
+    flex-direction: column;
+}
+
 .date-input {
     display: flex;
 }

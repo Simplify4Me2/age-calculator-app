@@ -9,7 +9,7 @@
         @*  <div class="top-row px-4">
         <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
         </div> *@
-        <EditForm Model="Model" class="foo" OnSubmit="Calculate" FormName="age-calculator-form">
+        <EditForm Model="Model" OnSubmit="Calculate" FormName="age-calculator-form">
             <fieldset class="date-input">
 
             <DataAnnotationsValidator />
@@ -28,9 +28,11 @@
             </p>
             </fieldset>
             <hr />
-            <button type="submit">Submit</button>
+            <button type="submit">
+                <img src="/images/icon-arrow.svg" />
+            </button>
         </EditForm>
-        <p>
+        <p class="calculated-age">
             <span><em>38</em>years</span>
             <span><em>3</em>months</span>
             <span><em>26</em>days</span>
