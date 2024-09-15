@@ -20,8 +20,12 @@ html, body {
 }
 
 .date-input {
-    max-width: 5.5rem;
+    width: 5.5rem;
     height: 3.4rem;
+    border-color: hsl(0, 0%, 94%); 
+    border-radius: 0.5rem;
+    border-style: solid;
+    border-width: thin;
 }
 
 h1:focus {

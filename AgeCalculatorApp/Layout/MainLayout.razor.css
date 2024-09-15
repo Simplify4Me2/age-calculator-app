@@ -32,13 +32,10 @@ fieldset {
     display: flex;
     flex-direction: column;
 }
-/*
-form p {
-    width: 3rem;
-}*/
-
-form p label {
+label {
     font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 3px;
 }
 
 .sidebar {
