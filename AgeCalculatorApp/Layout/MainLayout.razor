@@ -10,22 +10,21 @@
         <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
         </div> *@
         <EditForm Model="Model" OnSubmit="Calculate" FormName="age-calculator-form">
-            <fieldset class="date-input">
-
-            <DataAnnotationsValidator />
-            <ValidationSummary />
-            <p>
-                <label>Day</label>
-                <InputNumber class="w-auto" @bind-Value="Model!.Day" />
-            </p>
-            <p>
-                <label>Month</label>
-                <InputNumber @bind-Value="Model!.Month" />
-            </p>
-            <p>
-                <label>Year</label>
-                <InputNumber @bind-Value="Model!.Year" />
-            </p>
+            <fieldset>
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                <p>
+                    <label>Day</label>
+                    <InputNumber class="date-input" @bind-Value="Model!.Day" />
+                </p>
+                <p>
+                    <label>Month</label>
+                    <InputNumber class="date-input" @bind-Value="Model!.Month" />
+                </p>
+                <p>
+                    <label>Year</label>
+                    <InputNumber class="date-input" @bind-Value="Model!.Year" />
+                </p>
             </fieldset>
             <hr />
             <button type="submit">
@@ -59,7 +58,7 @@
         [Required]
         public int? Day { get; set; }
         [Required]
-        [Range(1, 12, ErrorMessage ="Invalid Month")]
+        [Range(1, 12, ErrorMessage = "Invalid Month")]
         public int? Month { get; set; }
         [Required]
         public int? Year { get; set; }
