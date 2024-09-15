@@ -13,18 +13,12 @@
             <fieldset>
                 <DataAnnotationsValidator />
                 <ValidationSummary />
-                <p>
-                    <label>DAY</label>
-                    <InputNumber class="date-input" @bind-Value="Model!.Day" />
-                </p>
-                <p>
-                    <label>MONTH</label>
-                    <InputNumber class="date-input" @bind-Value="Model!.Month" />
-                </p>
-                <p>
-                    <label>YEAR</label>
-                    <InputNumber class="date-input" @bind-Value="Model!.Year" />
-                </p>
+                <label>DAY</label>
+                <label>MONTH</label>
+                <label>YEAR</label>
+                <InputNumber class="date-input" @bind-Value="Model!.Day" />
+                <InputNumber class="date-input" @bind-Value="Model!.Month" />
+                <InputNumber class="date-input" @bind-Value="Model!.Year" />
             </fieldset>
             <hr />
             <button type="submit">
