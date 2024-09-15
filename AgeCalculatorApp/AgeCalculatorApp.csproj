@@ -6,9 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
-	<PropertyGroup>
+	<!--<PropertyGroup>
 		<StaticWebAssetBasePath>{PATH}</StaticWebAssetBasePath>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.5" />
