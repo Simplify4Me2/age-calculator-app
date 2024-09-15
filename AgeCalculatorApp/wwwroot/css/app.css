@@ -20,7 +20,8 @@ html, body {
 }
 
 .date-input {
-    max-width: 2rem;
+    max-width: 5.5rem;
+    height: 3.4rem;
 }
 
 h1:focus {
