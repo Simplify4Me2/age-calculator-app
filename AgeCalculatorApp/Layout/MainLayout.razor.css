@@ -23,7 +23,7 @@ fieldset {
     display: grid;
     grid-template-columns: repeat(3, 5rem);
     justify-content: space-between;
-    padding: 2.75rem 0.5rem;
+    padding: 3rem 1.5rem;
     /*max-width: fit-content;*/
     overflow: hidden;
 }
@@ -34,8 +34,8 @@ fieldset {
 }
 label {
     font-weight: bold;
-    font-size: 12px;
-    letter-spacing: 3px;
+    font-size: 11px;
+    letter-spacing: 4.5px;
 }
 
 .sidebar {
