@@ -26,16 +26,20 @@ fieldset {
     padding: 3rem 1.5rem;
     /*max-width: fit-content;*/
     overflow: hidden;
+    row-gap: 0.3rem;
 }
 
 .calculated-age {
     display: flex;
     flex-direction: column;
 }
+
 label {
-    font-weight: bold;
+    font-family: 'Poppins Bold';
+    font-weight: 700;
     font-size: 11px;
     letter-spacing: 4.5px;
+    color: hsl(0, 1%, 44%);
 }
 
 .sidebar {
