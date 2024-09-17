@@ -17,11 +17,17 @@ main {
 button {
     background-color: hsl(259, 100%, 65%);
     border-radius: 50%;
+    width: fit-content;
+    height: 4rem;
+    align-self: center;
+    margin-top: -2rem;
+    border-style: none;
+    z-index: 1;
 }
 
 fieldset {
     display: grid;
-    grid-template-columns: repeat(3, 5rem);
+    grid-template-columns: repeat(3, 5.5rem);
     justify-content: space-between;
     padding: 3rem 1.5rem;
     /*max-width: fit-content;*/
@@ -38,8 +44,13 @@ label {
     font-family: 'Poppins Bold';
     font-weight: 700;
     font-size: 11px;
-    letter-spacing: 4.5px;
+    letter-spacing: 4px;
     color: hsl(0, 1%, 44%);
+}
+
+hr {
+    color: hsl(0, 0%, 94%);
+    margin: 1rem 1.5rem 0rem 1.5rem;
 }
 
 .sidebar {
