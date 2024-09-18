@@ -40,8 +40,12 @@ fieldset {
     flex-direction: column;
 }
 
+em {
+    margin-right: 1rem;
+}
+
 label {
-    font-family: 'Poppins Bold';
+    font-family: 'PoppinsBold';
     font-weight: 700;
     font-size: 11px;
     letter-spacing: 4px;
@@ -49,7 +53,7 @@ label {
 }
 
 hr {
-    color: hsl(0, 0%, 86%);
+    color: hsl(0, 1%, 44%);
     margin: 1rem 1.5rem 0rem 1.5rem;
 }
 
@@ -59,7 +63,7 @@ img {
 }
 
 span {
-    font-family: 'Poppins Extra Bold Italic';
+    font-family: 'PoppinsExtraBoldItalic';
     font-size: 30px;
 }
 
