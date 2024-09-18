@@ -12,6 +12,13 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Poppins Extra Bold Italic';
+    src: url('fonts/Poppins-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
 html, body {
     font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 100%;
@@ -34,7 +41,7 @@ form {
 .date-input {
     width: 5.5rem;
     height: 3.4rem;
-    border-color: hsl(0, 0%, 94%); 
+    border-color: hsl(0, 0%, 86%);
     border-radius: 0.5rem;
     border-style: solid;
     border-width: thin;

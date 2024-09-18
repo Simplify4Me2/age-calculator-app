@@ -17,7 +17,7 @@ main {
 button {
     background-color: hsl(259, 100%, 65%);
     border-radius: 50%;
-    width: fit-content;
+    width: 4rem;
     height: 4rem;
     align-self: center;
     margin-top: -2rem;
@@ -49,8 +49,18 @@ label {
 }
 
 hr {
-    color: hsl(0, 0%, 94%);
+    color: hsl(0, 0%, 86%);
     margin: 1rem 1.5rem 0rem 1.5rem;
+}
+
+img {
+    height: 1.5rem;
+    width: 1.6rem;
+}
+
+span {
+    font-family: 'Poppins Extra Bold Italic';
+    font-size: 30px;
 }
 
 .sidebar {
