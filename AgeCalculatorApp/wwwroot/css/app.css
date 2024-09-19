@@ -6,15 +6,17 @@
 }
 
 @font-face {
-    font-family: 'Poppins Bold';
+    font-family: 'Poppins';
     src: url('fonts/Poppins-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Poppins Extra Bold Italic';
-    src: url(fonts/Poppins-ExtraBoldItalic.ttf') format('truetype');
+    font-family: 'Poppins Extra';
+    src: url('fonts/Poppins-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
 }
 
 html, body {

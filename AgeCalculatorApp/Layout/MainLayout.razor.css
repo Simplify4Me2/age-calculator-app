@@ -46,8 +46,8 @@ em {
 }
 
 label {
-    font-family: 'Poppins Bold';
-    font-weight: 700;
+    font-family: 'Poppins';
+    font-weight: bold;
     font-size: 11px;
     letter-spacing: 4px;
     color: hsl(0, 1%, 44%);
@@ -64,7 +64,7 @@ img {
 }
 
 span {
-    font-family: 'Poppins Extra Bold Italic';
+    font-family: 'Poppins Extra';
     font-size: 56px;
     font-style: italic;
     line-height: 3.75rem;
