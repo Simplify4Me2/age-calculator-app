@@ -65,8 +65,9 @@ img {
 
 span {
     font-family: 'Poppins Extra';
+    font-weight: bold;
+    font-style: normal;
     font-size: 56px;
-    font-style: italic;
     line-height: 3.75rem;
 }
 
