@@ -38,7 +38,7 @@ fieldset {
 .calculated-age {
     display: flex;
     flex-direction: column;
-    padding: 1.4rem 1.5rem;
+    padding: 2rem 1.5rem;
 }
 
 em {
@@ -64,9 +64,10 @@ img {
 }
 
 span {
-    font-family: 'Poppins Bold';
+    font-family: 'Poppins Extra Bold Italic';
     font-size: 56px;
     font-style: italic;
+    line-height: 3.75rem;
 }
 
 .sidebar {
