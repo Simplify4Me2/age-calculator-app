@@ -55,6 +55,15 @@ form {
     flex-direction: column;
 }
 
+
+span {
+    font-family: 'PoppinsExtra';
+    font-weight: bold;
+    font-style: normal;
+    font-size: 56px;
+    line-height: 3.75rem;
+}
+
 .page {
     background-color: hsl(0, 0%, 94%);
     height: 100%;
