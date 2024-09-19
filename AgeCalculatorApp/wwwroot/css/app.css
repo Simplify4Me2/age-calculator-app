@@ -27,14 +27,14 @@
 }
 
 @font-face {
-    font-family: 'PoppinsExtra';
+    font-family: 'Poppins Extra';
     src: url('../fonts/Poppins-ExtraBold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'PoppinsExtra';
+    font-family: 'Poppins Extra';
     src: url('../fonts/Poppins-ExtraBoldItalic.ttf') format('truetype');
     font-weight: bold;
     font-style: italic;
