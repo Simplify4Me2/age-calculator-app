@@ -30,7 +30,6 @@ fieldset {
     grid-template-columns: repeat(3, 5.5rem);
     justify-content: space-between;
     padding: 3rem 1.5rem;
-    /*max-width: fit-content;*/
     overflow: hidden;
     row-gap: 0.3rem;
 }
@@ -42,11 +41,12 @@ fieldset {
 }
 
 em {
-    margin-right: 0.2rem;
+    color: hsl(259, 100%, 65%);
+    margin-right: 0.5rem;
+    letter-spacing: -1px;
 }
 
 label {
-    /*font-family: 'Poppins';*/
     font-weight: bold;
     font-size: 11px;
     letter-spacing: 4px;
@@ -68,7 +68,8 @@ span {
     font-weight: bold;
     font-style: italic;
     font-size: 56px;
-    line-height: 3.75rem;
+    line-height: 3.85rem;
+    letter-spacing: -0.5px;
 }
 
 .sidebar {
@@ -76,10 +77,6 @@ span {
 }
 
 @media (min-width: 641px) {
-   /* .page {
-        flex-direction: row;
-    }*/
-
     .sidebar {
         width: 250px;
         height: 100vh;
@@ -93,11 +90,11 @@ span {
         z-index: 1;
     }
 
-    .top-row.auth ::deep a:first-child {
-        flex: 1;
-        text-align: right;
-        width: 0;
-    }
+        .top-row.auth ::deep a:first-child {
+            flex: 1;
+            text-align: right;
+            width: 0;
+        }
 
     .top-row, article {
         padding-left: 2rem !important;
