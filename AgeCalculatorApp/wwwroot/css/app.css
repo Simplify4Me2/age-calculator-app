@@ -25,8 +25,7 @@
     font-weight: bold;
     font-style: italic;
 }
-
-
+/*
 @font-face {
     font-family: 'PoppinsExtra';
     src: url('fonts/Poppins-ExtraBold.ttf') format('truetype');
@@ -40,7 +39,7 @@
     font-weight: bold;
     font-style: italic;
 }
-
+*/
 html, body {
     font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     height: 100%;
@@ -53,15 +52,6 @@ html, body {
 form {
     display: flex;
     flex-direction: column;
-}
-
-
-span {
-    font-family: 'PoppinsExtra';
-    font-weight: bold;
-    font-style: normal;
-    font-size: 56px;
-    line-height: 3.75rem;
 }
 
 .page {

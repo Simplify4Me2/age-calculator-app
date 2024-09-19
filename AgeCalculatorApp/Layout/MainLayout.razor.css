@@ -62,7 +62,7 @@ img {
     height: 1.5rem;
     width: 1.6rem;
 }
-/*
+
 span {
     font-family: 'PoppinsExtra';
     font-weight: bold;
@@ -70,7 +70,7 @@ span {
     font-size: 56px;
     line-height: 3.75rem;
 }
-*/
+
 .sidebar {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
 }
