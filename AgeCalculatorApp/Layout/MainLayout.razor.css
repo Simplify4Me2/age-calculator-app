@@ -85,6 +85,7 @@ span {
     }
 
     fieldset {
+        grid-template-columns: repeat(3, 10rem);
         justify-content: start;
         padding: 3.6rem 3.5rem 1rem;
         row-gap: 0.5rem;
