@@ -100,6 +100,14 @@ span {
         font-size: 14px;
     }
 
+    button {
+        width: 6rem;
+        height: 6rem;
+        align-self: end;
+        margin-top: -5rem;
+        margin-right: 3.5rem;
+    }
+
     .sidebar {
         width: 250px;
         height: 100vh;
