@@ -81,6 +81,22 @@ span {
         margin-top: 9.5rem;
         min-width: 52.5rem;
         min-height: 40.75rem;
+        border-radius: 1.5rem 1.5rem 12rem 1.5rem;
+    }
+
+    fieldset {
+        justify-content: start;
+        padding: 3.6rem 3.5rem 1rem;
+        row-gap: 0.5rem;
+        column-gap: 2rem;
+    }
+
+    hr {
+        margin: 2rem 3.5rem;
+    }
+
+    label {
+        font-size: 14px;
     }
 
     .sidebar {

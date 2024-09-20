@@ -167,3 +167,14 @@ a, .btn-link {
 code {
     color: #c02d76;
 }
+
+@media (min-width: 55rem) {
+    .date-input {
+        width: 10rem;
+        height: 4.5rem;
+        /*border-color: hsl(0, 0%, 86%);
+        border-radius: 0.5rem;
+        border-style: solid;
+        border-width: thin;*/
+    }
+}
