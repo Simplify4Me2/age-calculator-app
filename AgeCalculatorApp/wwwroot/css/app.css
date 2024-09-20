@@ -66,7 +66,17 @@ form {
     border-radius: 0.5rem;
     border-style: solid;
     border-width: thin;
+    color: hsl(0, 0%, 86%); 
+    line-height: 1.5rem;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: left;
 }
+
+    .date-input::placeholder {
+        padding-left: 1rem;
+        /*padding-top: 0.5rem;*/
+    }
 
 h1:focus {
     outline: none;
