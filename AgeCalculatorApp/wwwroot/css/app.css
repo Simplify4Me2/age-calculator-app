@@ -69,11 +69,11 @@ form {
     line-height: 1.5rem;
     font-size: 18px;
     font-weight: bold;
+    padding-left: 0.8rem;
 }
 
     .date-input::placeholder {
         color: hsl(0, 0%, 86%);
-        padding-left: 0.8rem;
     }
 
 h1:focus {
@@ -182,9 +182,9 @@ code {
         height: 4.5rem;
         font-size: 32px;
         line-height: 2rem;
+        padding-left: 1.4rem;
     }
 
         .date-input::placeholder {
-            padding-left: 1.4rem;
         }
 }
