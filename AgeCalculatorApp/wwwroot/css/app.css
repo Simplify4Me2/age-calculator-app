@@ -72,7 +72,7 @@ form {
 }
 
     .date-input::placeholder {
-        color: hsl(0, 0%, 86%); 
+        color: hsl(0, 0%, 86%);
         padding-left: 0.8rem;
     }
 
@@ -180,9 +180,11 @@ code {
     .date-input {
         width: 10rem;
         height: 4.5rem;
-        /*border-color: hsl(0, 0%, 86%);
-        border-radius: 0.5rem;
-        border-style: solid;
-        border-width: thin;*/
+        font-size: 32px;
+        line-height: 2rem;
     }
+
+        .date-input::placeholder {
+            padding-left: 1.4rem;
+        }
 }
