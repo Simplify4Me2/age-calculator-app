@@ -12,13 +12,21 @@
         <EditForm Model="Model" OnSubmit="Calculate" FormName="age-calculator-form">
             <fieldset>
                 <DataAnnotationsValidator />
-                <ValidationSummary />
                 <label>DAY</label>
                 <label>MONTH</label>
                 <label>YEAR</label>
-                <InputNumber class="date-input" @bind-Value="Model!.Day" placeholder="DD" />
-                <InputNumber class="date-input" @bind-Value="Model!.Month" placeholder="MM" />
-                <InputNumber class="date-input" @bind-Value="Model!.Year" placeholder="YYYY" />
+                <div>
+                    <InputNumber class="date-input" @bind-Value="Model!.Day" placeholder="DD" />
+                    <ValidationMessage For="() => Model.Day" />
+                </div>
+                <div>
+                    <InputNumber class="date-input" @bind-Value="Model!.Month" placeholder="MM" />
+                    <ValidationMessage For="() => Model.Month" />
+                </div>
+                <div>
+                    <InputNumber class="date-input" @bind-Value="Model!.Year" placeholder="YYYY" />
+                    <ValidationMessage For="() => Model.Year" />
+                </div>
             </fieldset>
             <hr />
             <button type="submit">
@@ -50,12 +58,13 @@
 
     public class Input
     {
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
+        [Range(1, 31, ErrorMessage = "Must be a valid day")]
         public int? Day { get; set; }
-        [Required]
-        [Range(1, 12, ErrorMessage = "Invalid Month")]
+        [Required(ErrorMessage = "This field is required")]
+        [Range(1, 12, ErrorMessage = "Must be a valid month")]
         public int? Month { get; set; }
-        [Required]
+        [Required(ErrorMessage = "This field is required")]
         public int? Year { get; set; }
     }
 
