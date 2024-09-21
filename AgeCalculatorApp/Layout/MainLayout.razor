@@ -26,9 +26,9 @@
             </button>
         </EditForm>
         <p class="calculated-age">
-            <span><em>38</em>years</span>
-            <span><em>3</em>months</span>
-            <span><em>26</em>days</span>
+            <span><em>@Result.Years</em>years</span>
+            <span><em>@Result.Months</em>months</span>
+            <span><em>@Result.Days</em>days</span>
             @* <article class="content px-4">
             @Body
             </article> *@
@@ -39,6 +39,7 @@
 @code {
     [SupplyParameterFromForm]
     private Input? Model { get; set; }
+    private CalculatedValues Result = new();
 
     protected override void OnInitialized() => Model ??= new();
 
@@ -56,5 +57,12 @@
         public int? Month { get; set; }
         [Required]
         public int? Year { get; set; }
+    }
+
+    public class CalculatedValues
+    {
+        public string Days { get; set; } = "- -";
+        public string Months { get; set; } = "- -";
+        public string Years { get; set; } = "- -";
     }
 }
