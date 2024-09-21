@@ -57,6 +57,10 @@ label {
     color: hsl(0, 1%, 44%);
 }
 
+label.invalid {
+    color: red;
+}
+
 hr {
     color: hsl(0, 1%, 44%);
     margin: 1rem 1.5rem 0rem 1.5rem;

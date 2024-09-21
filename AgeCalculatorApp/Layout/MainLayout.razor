@@ -9,12 +9,12 @@
         @*  <div class="top-row px-4">
         <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
         </div> *@
-        <EditForm Model="Model" OnSubmit="Calculate" FormName="age-calculator-form">
+        <EditForm Model="Model" OnValidSubmit="Calculate" OnInvalidSubmit="HandleInvalidSubmit" FormName="age-calculator-form">
             <fieldset>
                 <DataAnnotationsValidator />
-                <label>DAY</label>
-                <label>MONTH</label>
-                <label>YEAR</label>
+                <label class="@InvalidClass">DAY</label>
+                <label class="@InvalidClass">MONTH</label>
+                <label class="@InvalidClass">YEAR</label>
                 <div>
                     <InputNumber class="date-input" @bind-Value="Model!.Day" placeholder="DD" />
                     <ValidationMessage For="() => Model.Day" />
@@ -48,12 +48,19 @@
     [SupplyParameterFromForm]
     private Input? Model { get; set; }
     private CalculatedValues Result = new();
+    private string? InvalidClass { get; set; } = null;
 
     protected override void OnInitialized() => Model ??= new();
 
     private void Calculate()
     {
         Console.WriteLine($"Calculating... Day: {Model?.Day}, Month: {Model?.Month}, Year: {Model?.Year}");
+        InvalidClass = null;
+    }
+
+    private void HandleInvalidSubmit()
+    {
+        InvalidClass = "invalid";
     }
 
     public class Input
