@@ -45,12 +45,20 @@
 </div>
 
 @code {
+    private EditContext? editContext;
+
     [SupplyParameterFromForm]
     private Input? Model { get; set; }
     private CalculatedValues Result = new();
     private string? InvalidClass { get; set; } = null;
 
-    protected override void OnInitialized() => Model ??= new();
+    protected override void OnInitialized()
+    {
+        Model ??= new();
+        editContext = new(Model);
+        editContext.OnValidationRequested += HandleValidationRequested;
+        editContext.OnValidationStateChanged += HandleValidationStateChanged;
+    } 
 
     private void Calculate()
     {
@@ -61,6 +69,16 @@
     private void HandleInvalidSubmit()
     {
         InvalidClass = "invalid";
+    }
+
+    private void HandleValidationRequested(object? sender, ValidationRequestedEventArgs args)
+    {
+        Console.WriteLine($"HandleValidationRequested: {args} {sender}");
+    }
+
+    private void HandleValidationStateChanged(object? sender, ValidationStateChangedEventArgs args)
+    {
+        Console.WriteLine($"HandleValidationStateChanged: {args} {sender}");
     }
 
     public class Input
