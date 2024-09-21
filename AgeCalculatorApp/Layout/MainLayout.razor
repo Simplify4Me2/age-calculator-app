@@ -9,7 +9,7 @@
         @*  <div class="top-row px-4">
         <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
         </div> *@
-        <EditForm Model="Model" OnValidSubmit="Calculate" OnInvalidSubmit="HandleInvalidSubmit" FormName="age-calculator-form">
+        <EditForm EditContext="editContext" Model="Model" OnValidSubmit="Calculate" OnInvalidSubmit="HandleInvalidSubmit" FormName="age-calculator-form">
             <fieldset>
                 <DataAnnotationsValidator />
                 <label class="@InvalidClass">DAY</label>
@@ -68,6 +68,7 @@
 
     private void HandleInvalidSubmit()
     {
+        Console.WriteLine("Invalid...");
         InvalidClass = "invalid";
     }
 

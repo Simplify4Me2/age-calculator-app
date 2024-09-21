@@ -81,6 +81,10 @@ form {
         outline: none;
     }
 
+    .date-input.invalid {
+        border-color: red;
+    }
+
     h1:focus {
         outline: none;
     }
