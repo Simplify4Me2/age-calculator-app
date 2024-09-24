@@ -12,9 +12,9 @@
         <EditForm EditContext="editContext" OnValidSubmit="Calculate" OnInvalidSubmit="HandleInvalidSubmit" FormName="age-calculator-form">
             <fieldset>
                 <DataAnnotationsValidator />
-                <label class="@InvalidClass">DAY</label>
-                <label class="@InvalidClass">MONTH</label>
-                <label class="@InvalidClass">YEAR</label>
+                <label class="@InvalidDayClass">DAY</label>
+                <label class="@InvalidMonthClass">MONTH</label>
+                <label class="@InvalidYearClass">YEAR</label>
                 <div>
                     <InputNumber class="date-input" @bind-Value="Model!.Day" placeholder="DD" />
                     <ValidationMessage For="() => Model.Day" />
@@ -50,40 +50,61 @@
     [SupplyParameterFromForm]
     private Input? Model { get; set; }
     private CalculatedValues Result = new();
-    private string? InvalidClass { get; set; } = null;
+    private string? InvalidDayClass { get; set; } = null;
+    private string? InvalidMonthClass { get; set; } = null;
+    private string? InvalidYearClass { get; set; } = null;
 
     protected override void OnInitialized()
     {
         Model ??= new();
         editContext = new(Model);
-        editContext.OnValidationRequested += HandleValidationRequested;
         editContext.OnValidationStateChanged += HandleValidationStateChanged;
-    } 
+    }
 
     private void Calculate()
     {
         Console.WriteLine($"Calculating... Day: {Model?.Day}, Month: {Model?.Month}, Year: {Model?.Year}");
-        InvalidClass = null;
+        InvalidDayClass = InvalidMonthClass = InvalidYearClass = null;
     }
 
     private void HandleInvalidSubmit()
     {
         Console.WriteLine("Invalid...");
-        InvalidClass = "invalid";
-    }
-
-    private void HandleValidationRequested(object? sender, ValidationRequestedEventArgs args)
-    {
-        Console.WriteLine($"HandleValidationRequested: {args} {sender}");
+        // if (string.IsNullOrEmpty(Model!.Day)
+        // if (Model!.Day is null)
+        //     InvalidDayClass = "invalid";
+        // if (Model!.Month is null)
+        //     InvalidMonthClass = "invalid";
+        // if (Model!.Year is null)
+        //     InvalidYearClass = "invalid";
     }
 
     private void HandleValidationStateChanged(object? sender, ValidationStateChangedEventArgs args)
     {
-        Console.WriteLine($"HandleValidationStateChanged: {args} {sender}");
+        var dayField = editContext!.Field(nameof(Model.Day));
+        var monthField = editContext!.Field(nameof(Model.Month));
+        var yearField = editContext!.Field(nameof(Model.Year));
+
+        if (editContext!.IsValid(dayField))
+            InvalidDayClass = null;
+        else
+            InvalidDayClass = "invalid";
+
+        if (editContext!.IsValid(monthField))
+            InvalidMonthClass = null;
+        else
+            InvalidMonthClass = "invalid";
+
+        if (editContext!.IsValid(yearField))
+            InvalidYearClass = null;
+        else
+            InvalidYearClass = "invalid";
     }
 
     public class Input
     {
+        private int _currentYear = DateTime.Today.Year;
+
         [Required(ErrorMessage = "This field is required")]
         [Range(1, 31, ErrorMessage = "Must be a valid day")]
         public int? Day { get; set; }
@@ -91,13 +112,39 @@
         [Range(1, 12, ErrorMessage = "Must be a valid month")]
         public int? Month { get; set; }
         [Required(ErrorMessage = "This field is required")]
+        [YearRange]
         public int? Year { get; set; }
+    }
+
+    public class YearRangeAttribute : ValidationAttribute
+    {
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            int currentYear = DateTime.Today.Year;
+            if (value is int year)
+            {
+                if (year < 1 || year > currentYear)
+                    return new ValidationResult("Must be in the past");
+            }
+
+            return base.IsValid(value, validationContext);
+        }
     }
 
     public class CalculatedValues
     {
-        public string Days { get; set; } = "- -";
-        public string Months { get; set; } = "- -";
-        public string Years { get; set; } = "- -";
+        private const string Placeholder = "- -";
+
+        public string Days { get; set; } = Placeholder;
+        public string Months { get; set; } = Placeholder;
+        public string Years { get; set; } = Placeholder;
+    }
+
+    public void Dispose()
+    {
+        if (editContext is not null)
+        {
+            editContext.OnValidationStateChanged -= HandleValidationStateChanged;
+        }
     }
 }

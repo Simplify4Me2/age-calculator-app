@@ -141,3 +141,10 @@ span {
             width: 0;
         }
 }
+
+@media (max-width: 385px) {
+    span {
+        font-size: 52px;
+    }
+
+}
