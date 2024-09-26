@@ -46,6 +46,7 @@
 
 @code {
     private EditContext? editContext;
+    // private CustomValidation? customValidation;
 
     [SupplyParameterFromForm]
     private Input? Model { get; set; }
@@ -71,6 +72,20 @@
     {
         Console.WriteLine("Invalid...");
 
+        // Console.WriteLine($"Invalid form submission. Year: {Model?.Year}");
+
+        // var yearField = editContext!.Field(nameof(Model.Year));
+
+        // if (!editContext!.IsValid(yearField))
+        // {
+        //     Console.WriteLine($"Invalid form submission. Year: {Model?.Year}");
+        // }
+        // editContext.Validate();
+
+        TriggerYearValidation();
+
+        // editContext.
+
         // if (string.IsNullOrEmpty(Model!.Day)
         // if (Model!.Day is null)
         //     InvalidDayClass = "invalid";
@@ -86,21 +101,22 @@
         var monthField = editContext!.Field(nameof(Model.Month));
         var yearField = editContext!.Field(nameof(Model.Year));
 
-        if (editContext!.IsValid(dayField))
-            InvalidDayClass = null;
-        else
-            InvalidDayClass = "invalid";
+        // editContext.NotifyFieldChanged(yearField);
 
-        if (editContext!.IsValid(monthField))
-            InvalidMonthClass = null;
-        else
-            InvalidMonthClass = "invalid";
+        InvalidDayClass = editContext!.IsValid(dayField) ? null : "invalid";
+        InvalidMonthClass = editContext!.IsValid(monthField) ? null : "invalid";
+        InvalidYearClass = editContext!.IsValid(yearField) ? null : "invalid";
 
-        if (editContext!.IsValid(yearField))
-            InvalidYearClass = null;
-        else
-            InvalidYearClass = "invalid";
+        // Console.WriteLine($"Year is {InvalidYearClass ?? "valid"}");
     }
+
+    private void TriggerYearValidation()
+    {
+        var yearField = editContext!.Field(nameof(Model.Year));
+        // Notify Blazor that the Year field has changed, which triggers validation
+        editContext.NotifyFieldChanged(yearField);
+    }
+
 
     public class Input
     {
@@ -121,6 +137,8 @@
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
+            Console.WriteLine($"Validating {value}");
+
             if (value is null)
                 return ValidationResult.Success;
 
@@ -131,7 +149,6 @@
                     return new ValidationResult("Must be in the past");
             }
 
-            // return base.IsValid(value, validationContext);
             return ValidationResult.Success;
         }
     }
