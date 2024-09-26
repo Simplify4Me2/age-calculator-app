@@ -1,4 +1,5 @@
 ﻿@using System.ComponentModel.DataAnnotations
+@using AgeCalculatorApp.Validators
 @inherits LayoutComponentBase
 <div class="page">
     @* <div class="sidebar">
@@ -46,7 +47,6 @@
 
 @code {
     private EditContext? editContext;
-    // private CustomValidation? customValidation;
 
     [SupplyParameterFromForm]
     private Input? Model { get; set; }
@@ -70,29 +70,8 @@
 
     private void HandleInvalidSubmit()
     {
-        Console.WriteLine("Invalid...");
-
-        // Console.WriteLine($"Invalid form submission. Year: {Model?.Year}");
-
-        // var yearField = editContext!.Field(nameof(Model.Year));
-
-        // if (!editContext!.IsValid(yearField))
-        // {
-        //     Console.WriteLine($"Invalid form submission. Year: {Model?.Year}");
-        // }
-        // editContext.Validate();
-
         TriggerYearValidation();
-
-        // editContext.
-
-        // if (string.IsNullOrEmpty(Model!.Day)
-        // if (Model!.Day is null)
-        //     InvalidDayClass = "invalid";
-        // if (Model!.Month is null)
-        //     InvalidMonthClass = "invalid";
-        // if (Model!.Year is null)
-        //     InvalidYearClass = "invalid";
+        TriggerDateValidation();
     }
 
     private void HandleValidationStateChanged(object? sender, ValidationStateChangedEventArgs args)
@@ -101,13 +80,13 @@
         var monthField = editContext!.Field(nameof(Model.Month));
         var yearField = editContext!.Field(nameof(Model.Year));
 
-        // editContext.NotifyFieldChanged(yearField);
-
         InvalidDayClass = editContext!.IsValid(dayField) ? null : "invalid";
         InvalidMonthClass = editContext!.IsValid(monthField) ? null : "invalid";
         InvalidYearClass = editContext!.IsValid(yearField) ? null : "invalid";
 
-        // Console.WriteLine($"Year is {InvalidYearClass ?? "valid"}");
+        var foo = editContext.GetValidationMessages(dayField);
+
+        // if (editContext.GetValidationMessages())
     }
 
     private void TriggerYearValidation()
@@ -117,13 +96,20 @@
         editContext.NotifyFieldChanged(yearField);
     }
 
+    private void TriggerDateValidation()
+    {
+        var dayField = editContext!.Field(nameof(Model.Day));
+        // Notify Blazor that the Year field has changed, which triggers validation
+        editContext.NotifyFieldChanged(dayField);
+    }
 
     public class Input
     {
         private int _currentYear = DateTime.Today.Year;
 
-        [Required(ErrorMessage = "This field is required")]
-        [Range(1, 31, ErrorMessage = "Must be a valid day")]
+        // [Required(ErrorMessage = "This field is required")]
+        // [Range(1, 31, ErrorMessage = "Must be a valid day")]
+        [ValidDate]
         public int? Day { get; set; }
         [Required(ErrorMessage = "This field is required")]
         [Range(1, 12, ErrorMessage = "Must be a valid month")]
@@ -131,26 +117,6 @@
         [Required(ErrorMessage = "This field is required")]
         [YearRange]
         public int? Year { get; set; }
-    }
-
-    public class YearRangeAttribute : ValidationAttribute
-    {
-        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
-        {
-            Console.WriteLine($"Validating {value}");
-
-            if (value is null)
-                return ValidationResult.Success;
-
-            int currentYear = DateTime.Today.Year;
-            if (value is int year)
-            {
-                if (year < 1 || year > currentYear)
-                    return new ValidationResult("Must be in the past");
-            }
-
-            return ValidationResult.Success;
-        }
     }
 
     public class CalculatedValues
