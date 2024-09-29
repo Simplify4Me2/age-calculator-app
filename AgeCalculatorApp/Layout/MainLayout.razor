@@ -47,7 +47,7 @@
 
 @code {
     private EditContext? editContext;
-    private ValidationMessageStore messageStore;
+    private ValidationMessageStore? messageStore;
 
     [SupplyParameterFromForm]
     private Input? Model { get; set; }
@@ -120,13 +120,13 @@
 
         if (validationMessages.Any(f => f.Contains("date")))
         {
-            messageStore.Add(monthField, "");
-            messageStore.Add(yearField, "");
+            messageStore!.Add(monthField, "");
+            messageStore!.Add(yearField, "");
         }
         else
         {
-            messageStore.Clear(monthField);
-            messageStore.Clear(yearField);
+            messageStore!.Clear(monthField);
+            messageStore!.Clear(yearField);
         }
 
         InvalidDayClass = editContext!.IsValid(dayField) ? null : "invalid";

@@ -22,7 +22,7 @@ namespace AgeCalculatorApp.Validators
             var isValidDate = DateTime.TryParse($"{value}/{model.Month}/{model.Year}", out _);
 
             var foo = isValidDate ? "valid" : "invalid";
-            Console.WriteLine($"Date is {foo}");
+            Console.WriteLine($"Date {value}/{model.Month}/{model.Year} is {foo}");
 
             if (!isValidDate)
                 return new ValidationResult("Must be a valid date");
