@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using Input =  AgeCalculatorApp.Layout.MainLayout.Input;
 
 namespace AgeCalculatorApp.Validators
@@ -19,10 +20,7 @@ namespace AgeCalculatorApp.Validators
 
             if (model is null || model.Month is null || model.Year is null)
                 return ValidationResult.Success;
-            var isValidDate = DateTime.TryParse($"{value}/{model.Month}/{model.Year}", out _);
-
-            var foo = isValidDate ? "valid" : "invalid";
-            Console.WriteLine($"Date {value}/{model.Month}/{model.Year} is {foo}");
+            var isValidDate = DateTime.TryParse($"{value}/{model.Month}/{model.Year}", CultureInfo.CreateSpecificCulture("nl-NL"), out _);
 
             if (!isValidDate)
                 return new ValidationResult("Must be a valid date");
