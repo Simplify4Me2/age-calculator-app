@@ -20,7 +20,7 @@ namespace AgeCalculatorApp.Validators
 
             if (model is null || model.Month is null || model.Year is null)
                 return ValidationResult.Success;
-            var isValidDate = DateTime.TryParse($"{value}/{model.Month}/{model.Year}", CultureInfo.CreateSpecificCulture("nl-NL"), out _);
+            var isValidDate = DateTime.TryParse($"{model.Month}/{value}/{model.Year}", CultureInfo.InvariantCulture, out _);
 
             if (!isValidDate)
                 return new ValidationResult("Must be a valid date");
