@@ -19,8 +19,7 @@ namespace AgeCalculatorApp.Validators
 
             if (model is null || model.Month is null || model.Year is null)
                 return ValidationResult.Success;
-
-            var isValidDate = DateTime.TryParse($"{value}/{model.Month}/{model.Year}", out DateTime date);
+            var isValidDate = DateTime.TryParse($"{value}/{model.Month}/{model.Year}", out _);
 
             if (!isValidDate)
                 return new ValidationResult("Must be a valid date");

@@ -66,8 +66,36 @@
 
     private void Calculate()
     {
-        Console.WriteLine($"Calculating... Day: {Model?.Day}, Month: {Model?.Month}, Year: {Model?.Year}");
+        var day = Model!.Day ?? throw new ArgumentException(nameof(Input.Day));
+        var month = Model!.Month ?? throw new ArgumentException(nameof(Input.Month));
+        var year = Model!.Year ?? throw new ArgumentException(nameof(Input.Year));
+
         InvalidDayClass = InvalidMonthClass = InvalidYearClass = null;
+
+        var dateInput = new DateTime(year, month, day);
+        var today = DateTime.Today;
+
+        var years = today.Year - dateInput.Year;
+
+        if (today.Month < dateInput.Month || (today.Month == dateInput.Month && today.Day < dateInput.Day))
+            years--; // If the end date's month/day is earlier, reduce the number of years
+
+        int months = today.Month - dateInput.Month;
+        if (months < 0)
+            months += 12;
+        if (today.Day < dateInput.Day)
+            months--; // If the end day is earlier than the start day, reduce the number of months
+
+        int days = today.Day - dateInput.Day;
+        if (days < 0)
+        {
+            var previousMonth = today.AddMonths(-1);
+            days += DateTime.DaysInMonth(previousMonth.Year, previousMonth.Month);
+        }
+
+        Result.Days = days.ToString();
+        Result.Months = months.ToString();
+        Result.Years = years.ToString();
     }
 
     private void HandleInvalidSubmit()
@@ -78,6 +106,8 @@
 
     private void HandleValidationStateChanged(object? sender, ValidationStateChangedEventArgs args)
     {
+        Result = new();
+
         var dayField = editContext!.Field(nameof(Model.Day));
         var monthField = editContext!.Field(nameof(Model.Month));
         var yearField = editContext!.Field(nameof(Model.Year));
@@ -92,7 +122,8 @@
         {
             messageStore.Add(monthField, "");
             messageStore.Add(yearField, "");
-        } else
+        }
+        else
         {
             messageStore.Clear(monthField);
             messageStore.Clear(yearField);
