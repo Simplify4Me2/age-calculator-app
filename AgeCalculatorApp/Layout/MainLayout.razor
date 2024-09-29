@@ -47,6 +47,7 @@
 
 @code {
     private EditContext? editContext;
+    private ValidationMessageStore messageStore;
 
     [SupplyParameterFromForm]
     private Input? Model { get; set; }
@@ -59,6 +60,7 @@
     {
         Model ??= new();
         editContext = new(Model);
+        messageStore = new(editContext);
         editContext.OnValidationStateChanged += HandleValidationStateChanged;
     }
 
@@ -84,9 +86,21 @@
         InvalidMonthClass = editContext!.IsValid(monthField) ? null : "invalid";
         InvalidYearClass = editContext!.IsValid(yearField) ? null : "invalid";
 
-        var foo = editContext.GetValidationMessages(dayField);
+        var validationMessages = editContext.GetValidationMessages(dayField);
 
-        // if (editContext.GetValidationMessages())
+        if (validationMessages.Any(f => f.Contains("date")))
+        {
+            messageStore.Add(monthField, "");
+            messageStore.Add(yearField, "");
+        } else
+        {
+            messageStore.Clear(monthField);
+            messageStore.Clear(yearField);
+        }
+
+        InvalidDayClass = editContext!.IsValid(dayField) ? null : "invalid";
+        InvalidMonthClass = editContext!.IsValid(monthField) ? null : "invalid";
+        InvalidYearClass = editContext!.IsValid(yearField) ? null : "invalid";
     }
 
     private void TriggerYearValidation()
@@ -107,8 +121,6 @@
     {
         private int _currentYear = DateTime.Today.Year;
 
-        // [Required(ErrorMessage = "This field is required")]
-        // [Range(1, 31, ErrorMessage = "Must be a valid day")]
         [ValidDate]
         public int? Day { get; set; }
         [Required(ErrorMessage = "This field is required")]
