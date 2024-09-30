@@ -27,6 +27,10 @@
             counter++;
             displayValue = counter.ToString();
         }
+        else if (MaxValue.HasValue && MaxValue.Value == 0)
+        {
+            displayValue = counter.ToString();
+        }
         else
             timer?.Dispose();
 
