@@ -44,12 +44,6 @@ fieldset {
     padding: 2rem 1.5rem;
 }
 
-em {
-    color: hsl(259, 100%, 65%);
-    margin-right: 0.5rem;
-    letter-spacing: -1px;
-}
-
 label {
     font-weight: bold;
     font-size: 11px;

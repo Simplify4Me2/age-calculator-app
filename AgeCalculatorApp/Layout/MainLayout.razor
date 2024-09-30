@@ -1,15 +1,9 @@
 ﻿@using System.ComponentModel.DataAnnotations
+@using AgeCalculatorApp.Pages
 @using AgeCalculatorApp.Validators
 @inherits LayoutComponentBase
 <div class="page">
-    @* <div class="sidebar">
-    <NavMenu />
-    </div> *@
-
     <main>
-        @*  <div class="top-row px-4">
-        <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div> *@
         <EditForm EditContext="editContext" OnValidSubmit="Calculate" OnInvalidSubmit="HandleInvalidSubmit" FormName="age-calculator-form">
             <fieldset>
                 <DataAnnotationsValidator />
@@ -35,12 +29,39 @@
             </button>
         </EditForm>
         <p class="calculated-age">
-            <span><em>@Result.Years</em>years</span>
-            <span><em>@Result.Months</em>months</span>
-            <span><em>@Result.Days</em>days</span>
-            @* <article class="content px-4">
-            @Body
-            </article> *@
+            <span>
+                @if (isCounterVisible)
+                {
+                    <Counter MaxValue="@Result.Years" />
+                }
+                else
+                {
+                    <Counter />
+                }
+                years
+            </span>
+            <span>
+                @if (isCounterVisible)
+                {
+                    <Counter MaxValue="@Result.Months" />
+                }
+                else
+                {
+                    <Counter />
+                }
+                months
+            </span>
+            <span>
+                @if (isCounterVisible)
+                {
+                    <Counter MaxValue="@Result.Days" />
+                }
+                else
+                {
+                    <Counter />
+                }
+                days
+            </span>
         </p>
     </main>
 </div>
@@ -55,6 +76,7 @@
     private string? InvalidDayClass { get; set; } = null;
     private string? InvalidMonthClass { get; set; } = null;
     private string? InvalidYearClass { get; set; } = null;
+    private bool isCounterVisible = false;
 
     protected override void OnInitialized()
     {
@@ -93,9 +115,11 @@
             days += DateTime.DaysInMonth(previousMonth.Year, previousMonth.Month);
         }
 
-        Result.Days = days.ToString();
-        Result.Months = months.ToString();
-        Result.Years = years.ToString();
+        Result.Days = days;
+        Result.Months = months;
+        Result.Years = years;
+
+        isCounterVisible = true;
     }
 
     private void HandleInvalidSubmit()
@@ -106,6 +130,7 @@
 
     private void HandleValidationStateChanged(object? sender, ValidationStateChangedEventArgs args)
     {
+        isCounterVisible = false;
         Result = new();
 
         var dayField = editContext!.Field(nameof(Model.Day));
@@ -164,11 +189,9 @@
 
     public class CalculatedValues
     {
-        private const string Placeholder = "- -";
-
-        public string Days { get; set; } = Placeholder;
-        public string Months { get; set; } = Placeholder;
-        public string Years { get; set; } = Placeholder;
+        public int? Days { get; set; }
+        public int? Months { get; set; }
+        public int? Years { get; set; }
     }
 
     public void Dispose()
